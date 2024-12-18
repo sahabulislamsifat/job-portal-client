@@ -1,18 +1,35 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../context/AuthContext";
+import logo from "../../../public/favicon.logo.png";
 
 const Navbar = () => {
   const { user, signOutUser } = useContext(AuthContext);
 
+  const handleSignOut = () => {
+    signOutUser()
+      .then(() => console.log("Successfully User Sign Out"))
+      .catch((error) => {
+        console.log(
+          "failed to sign out, stay here. don't leave me alone",
+          error.message
+        );
+      });
+  };
+
   const Links = (
     <>
-      <li>
-        <a>Home</a>
-      </li>
-      <li>
-        <a>About</a>
-      </li>
+      <div className="flex gap-5">
+        <li>
+          <NavLink to={"/"}>Home</NavLink>
+        </li>
+        <li>
+          <a>Services</a>
+        </li>
+        <li>
+          <a>About</a>
+        </li>
+      </div>
     </>
   );
 
@@ -44,7 +61,10 @@ const Navbar = () => {
               {Links}
             </ul>
           </div>
-          <a className="btn btn-ghost text-xl">Job Portal</a>
+          <a className="btn btn-ghost text-xl">
+            <img className="w-12" src={logo} alt="" />
+            <h3 className="text-3xl">Job Portal</h3>
+          </a>
         </div>
         <div className="navbar-center hidden lg:flex">
           <ul className="menu menu-horizontal px-1">{Links}</ul>
@@ -52,7 +72,9 @@ const Navbar = () => {
         <div className="navbar-end">
           {user ? (
             <>
-              <button className="btn">Log Out</button>
+              <button onClick={handleSignOut} className="btn">
+                Sign Out
+              </button>
             </>
           ) : (
             <>
