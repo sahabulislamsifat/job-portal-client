@@ -1,7 +1,11 @@
 import Lottie from "lottie-react";
 import lottieAnimationData from "../../assets/lottie/Register-animation.json";
+import { useContext } from "react";
+import AuthContext from "../../context/AuthContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+
   // Regex for password validation
   const validPasswordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
 
@@ -21,13 +25,18 @@ const Register = () => {
       );
       return;
     }
-
     // Log successful data
     console.log("Name:", name);
     console.log("Email:", email);
     console.log("Password:", password);
 
     alert("Registration successful!");
+
+    createUser(email, password)
+      .then((result) => console.log(result.user))
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
   return (
