@@ -2,6 +2,7 @@ import React, { useContext } from "react";
 import Lottie from "lottie-react";
 import lottieAnimationData from "../../assets/lottie/login.json";
 import AuthContext from "../../context/AuthContext";
+import SocialLogin from "../shared/SocialLogin";
 
 const SignIn = () => {
   const validPasswordRegex = /^(?=.*[A-Z])(?=.*[a-z])(?=.*\d).{6,}$/;
@@ -80,6 +81,9 @@ const SignIn = () => {
                 <button className="btn btn-primary">Log In</button>
               </div>
             </form>
+            <div className="flex justify-center mb-8">
+              <SocialLogin></SocialLogin>
+            </div>
           </div>
         </div>
       </div>
