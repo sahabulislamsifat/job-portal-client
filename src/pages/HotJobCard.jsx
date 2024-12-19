@@ -1,9 +1,10 @@
-import { p } from "motion/react-client";
 import React from "react";
 import { FaDollarSign, FaMapMarkerAlt } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const HotJobCard = ({ job }) => {
   const {
+    _id,
     title,
     location,
     jobType,
@@ -20,7 +21,7 @@ const HotJobCard = ({ job }) => {
 
   return (
     <div>
-      <div className="card card-compact h-96 rounded-sm bg-base-200 border border-slate-300 shadow-sm">
+      <div className="card card-compact h-96 rounded-md border border-slate-300 shadow-md">
         <div className="flex gap-2 m-2">
           <figure>
             <img className="w-14" src={company_logo} alt="Shoes" />
@@ -39,8 +40,11 @@ const HotJobCard = ({ job }) => {
           </div>
           <p>{description}</p>
           <div className="flex gap-2 flex-wrap">
-            {requirements.map((skill) => (
-              <p className="border rounded-sm text-center px-2 hover:text-sky-600 hover:bg-gray-300">
+            {requirements.map((skill, index) => (
+              <p
+                key={index}
+                className="border rounded-sm text-center px-2 hover:text-sky-600 hover:bg-gray-300"
+              >
                 {skill}
               </p>
             ))}
@@ -50,9 +54,11 @@ const HotJobCard = ({ job }) => {
               <FaDollarSign></FaDollarSign> Salary : {salaryRange.min} -{" "}
               {salaryRange.max} {salaryRange.currency}
             </p>
-            <button className="btn btn-sm bg-green-500 rounded-sm border-none text-slate-700">
-              Apply Now
-            </button>
+            <Link to={`/jobDetails/${_id}`}>
+              <button className="btn btn-sm bg-green-500 rounded-sm border-none text-slate-700">
+                Apply Now
+              </button>
+            </Link>
           </div>
         </div>
       </div>
