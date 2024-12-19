@@ -7,7 +7,7 @@ const Banner = () => {
   return (
     <div className="hero bg-base-200 min-h-[650px]">
       <div className="hero-content flex-col lg:flex-row-reverse">
-        <div className="flex-1">
+        <div className="flex-1 w-96">
           <motion.img
             animate={{ y: [100, 50, 100] }}
             transition={{ duration: 10, repeat: Infinity }}
@@ -15,13 +15,13 @@ const Banner = () => {
             className="max-w-sm w-72 rounded-br-[40px] rounded-t-[40px] rounded-lg border-l-4 border-blue-400 border-b-4 shadow-2xl"
           />
           <motion.img
-            animate={{ x: [100, 180, 100] }}
+            animate={{ x: [80, 150, 80] }}
             transition={{ duration: 10, repeat: Infinity }}
             src={team2}
             className="max-w-sm w-72 rounded-br-[40px] rounded-t-[40px] rounded-lg border-l-4 border-blue-400 border-b-4 shadow-2xl"
           />
         </div>
-        <div>
+        <div className="mr-24">
           <motion.h1
             animate={{ x: 50, color: "purple" }}
             transition={{
@@ -42,8 +42,7 @@ const Banner = () => {
           </motion.h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-            excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
-            a id nisi.
+            excepturi exercitationem quasi. 
           </p>
           <button className="btn btn-primary">Get Started</button>
         </div>
