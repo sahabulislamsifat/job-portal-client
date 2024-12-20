@@ -11,7 +11,7 @@ const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
-  console.log("in SignIn Page:", location);
+  // console.log("in SignIn Page:", location);
   const from = location.state || "/";
 
   const handleSignIn = (event) => {
