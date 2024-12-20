@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
-import UseAuth from "../hooks/UseAuth";
+import UseAuth from "../../hooks/UseAuth";
+import { Link } from "react-router-dom";
 
-const MyApplication = () => {
-  const { user } = UseAuth();
+const MyPostedJobs = () => {
   const [jobs, setJobs] = useState([]);
+  const { user } = UseAuth();
 
   useEffect(() => {
-    fetch(`http://localhost:5000/job-application?email=${user.email}`)
+    fetch(`http://localhost:5000/jobs?email=${user.email}`)
       .then((res) => res.json())
       .then((data) => {
         setJobs(data);
@@ -16,13 +17,14 @@ const MyApplication = () => {
   return (
     <div className="my-24">
       <h2 className="text-3xl text-center">My Applications : {jobs.length}</h2>
-      {jobs.map((job) => (
+      {jobs.map((job, index) => (
         <div className="overflow-x-auto">
           <table className="table">
             <tbody>
               <tr>
                 <td>
                   <div className="flex items-center gap-3">
+                    {index + 1}
                     <div className="avatar">
                       <div className="mask mask-squircle h-12 w-12">
                         <img
@@ -38,13 +40,17 @@ const MyApplication = () => {
                   </div>
                 </td>
                 <td>
-                  Application : {job.applicationCount}
+                  Application View : {job.applicationCount}
                   <br />
                   <span className="badge badge-ghost badge-sm">
                     Desktop Support Technician
                   </span>
                 </td>
-                <td>Purple</td>
+                <td>
+                  <Link to={`/viewApplications/${job._id}`}>
+                    <button className="btn btn-link">View Applications</button>
+                  </Link>
+                </td>
                 <th>
                   <button className="btn btn-ghost btn-xs">details</button>
                 </th>
@@ -57,4 +63,4 @@ const MyApplication = () => {
   );
 };
 
-export default MyApplication;
+export default MyPostedJobs;

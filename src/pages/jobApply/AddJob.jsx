@@ -29,8 +29,8 @@ const AddJob = () => {
       .then((data) => {
         if (data.insertedId) {
           Swal.fire({
-            title: "Okay",
-            icon: "Successfully Added A Job",
+            title: "Successfully Added Job",
+            icon: "success",
             draggable: true,
           });
         }
@@ -222,6 +222,19 @@ const AddJob = () => {
             type="email"
             name="hr_email"
             placeholder="HR Email"
+            className="input input-bordered"
+            required
+          />
+        </div>
+        {/* Deadline */}
+        <div className="form-control">
+          <label className="label">
+            <span className="label-text text-xl font-semibold">Deadline</span>
+          </label>
+          <input
+            type="date"
+            name="deadline"
+            placeholder="Job Deadline"
             className="input input-bordered"
             required
           />
